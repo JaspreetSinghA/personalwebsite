@@ -26,18 +26,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci && npm run build
+      # args are eval'd by the action, so regexes must be quoted.
       # LinkedIn blocks bots (HTTP 999); the site's own absolute URLs (canonical/og) are covered by --root-dir.
       - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
           args: >-
             --no-progress
-            --root-dir ${{ github.workspace }}/dist
+            --root-dir '${{ github.workspace }}/dist'
             --max-retries 3
-            --accept 200..=299,429
-            --exclude ^https://(www\.)?linkedin\.com
-            --exclude ^https://www\.jaspreetahluwalia\.com
-            --exclude ^https://fonts\.(googleapis|gstatic)\.com
-            --exclude ^https://gc\.zgo\.at
+            --accept '200..=299,429'
+            --exclude '^https://(www\.)?linkedin\.com'
+            --exclude '^https://www\.jaspreetahluwalia\.com'
+            --exclude '^https://fonts\.(googleapis|gstatic)\.com'
+            --exclude '^https://gc\.zgo\.at'
             dist
           fail: true
           jobSummary: true
