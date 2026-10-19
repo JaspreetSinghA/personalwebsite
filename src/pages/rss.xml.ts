@@ -1,13 +1,13 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { getPosts } from "../lib/posts";
-import { profile } from "../data/profile";
+import { getWriting } from "../lib/posts";
+import { profile, blogDescription } from "../data/profile";
 
 export async function GET(context: APIContext) {
-  const posts = await getPosts();
+  const posts = await getWriting();
   return rss({
     title: `${profile.name} — Blog`,
-    description: "Notes on embedded systems, race-car electronics, AI evaluation, and what I'm building.",
+    description: blogDescription,
     site: context.site!,
     items: posts.map((post) => ({
       title: post.data.title,

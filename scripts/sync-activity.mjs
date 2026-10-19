@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Builds a Markdown blog post summarizing recent public GitHub activity.
-// At most one post per UTC day; exits without writing if there's nothing new.
+// Writes at most one post per MIN_DAYS_BETWEEN_POSTS (and never two on the same UTC day);
+// exits without writing if there's nothing new.
 import { readdir, readFile, writeFile, appendFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
@@ -12,6 +13,7 @@ const DRY_RUN = process.env.DRY_RUN === "true";
 const DEFAULT_LOOKBACK_DAYS = 7;
 const MAX_LOOKBACK_DAYS = 30;
 const MAX_COMMITS_PER_REPO = 10;
+const MIN_DAYS_BETWEEN_POSTS = Math.max(1, Number(process.env.MIN_DAYS_BETWEEN_POSTS) || 6);
 const PREFIX = "activity-";
 
 const now = new Date();
@@ -54,8 +56,14 @@ async function main() {
     return setOutput("created", "false");
   }
 
+  const last = await lastSyncDate();
+  if (last && now.getTime() - last.getTime() < MIN_DAYS_BETWEEN_POSTS * 864e5) {
+    console.log(`Last activity post was ${last.toISOString()}; posts are at least ${MIN_DAYS_BETWEEN_POSTS} days apart. Skipping.`);
+    return setOutput("created", "false");
+  }
+
   const floor = new Date(now.getTime() - MAX_LOOKBACK_DAYS * 864e5);
-  let since = (await lastSyncDate()) ?? new Date(now.getTime() - DEFAULT_LOOKBACK_DAYS * 864e5);
+  let since = last ?? new Date(now.getTime() - DEFAULT_LOOKBACK_DAYS * 864e5);
   if (Number.isNaN(since.getTime()) || since < floor) since = floor;
   console.log(`Collecting activity for ${USER} since ${since.toISOString()}`);
 
@@ -136,7 +144,7 @@ async function main() {
 
   const frontmatter = [
     "---",
-    `title: ${JSON.stringify(`Activity update: ${now.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}`)}`,
+    `title: ${JSON.stringify(`GitHub activity: week of ${now.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}`)}`,
     `description: ${JSON.stringify(`Automated GitHub roundup — ${summary}.`)}`,
     `date: ${today}`,
     `syncedAt: ${JSON.stringify(now.toISOString())}`,
