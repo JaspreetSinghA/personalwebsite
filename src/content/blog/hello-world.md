@@ -13,4 +13,4 @@ This site used to be a handful of hand-written HTML pages from high school. It's
 - **AI evaluation** — building and validating LLM-as-judge scorers for [BiasLens](https://github.com/JaspreetSinghA/biaslense).
 - **Side projects** — things like [LiftLog](https://github.com/JaspreetSinghA/liftlog).
 
-A scheduled GitHub Action also rounds up my public GitHub activity (at most once a day) and publishes it here as an activity update.
+A scheduled GitHub Action also rounds up my public GitHub activity once a week and publishes it under [GitHub activity](/blog/activity/), so it doesn't crowd out the writing here.

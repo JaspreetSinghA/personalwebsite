@@ -6,6 +6,9 @@ export const profile = {
   github: "https://github.com/JaspreetSinghA",
   githubUser: "JaspreetSinghA",
   linkedin: "https://www.linkedin.com/in/jaspreet-ahluwalia007/",
+  resume: "/Jaspreet_Ahluwalia_Resume.pdf",
+  photo: "/headshot.jpg",
+  seeking: "Seeking Summer 2027 internships in embedded systems, hardware, and electrical engineering.",
   summary:
     "I build embedded systems for an electric race car and tools that measure bias in AI. Currently writing SPI and CAN drivers for Spartan Racing's vehicle control unit, and maintaining BiasLens, an open-source LLM bias-detection toolkit.",
 };
@@ -18,6 +21,8 @@ export type Experience = {
   location?: string;
   points: string[];
   link?: string;
+  /** Blog post id of a case study; only linked once the post is published. */
+  writeup?: string;
 };
 
 export const experience: Experience[] = [
@@ -26,6 +31,7 @@ export const experience: Experience[] = [
     orgNote: "SJSU Formula SAE Electric",
     role: "Electronics & Software — BMS, VCU, Derating",
     period: "Sep 2026 — Present",
+    writeup: "spartan-racing-bms-derating",
     points: [
       "Developing SPI and CAN bus drivers for the team's custom vehicle control unit (VCU).",
       "Found the pack's hottest sensors were reading fuselink heating, not cell temperature, and corrected the derating model's peak-temperature error from ~4 °C to 8–10 °C.",
@@ -40,6 +46,7 @@ export const experience: Experience[] = [
     role: "Founder & Sole Developer",
     period: "Jan 2024 — Present",
     link: "https://github.com/JaspreetSinghA/biaslense",
+    writeup: "biaslens-llm-as-judge",
     points: [
       "Shipped a Python SDK on PyPI, a rate-limited FastAPI REST API, a Streamlit web app, and an MCP server.",
       "Rebuilt the scorer as a structured LLM-as-judge that rates text 1–5 on 5 dimensions with a written rationale; validated on a hand-labeled benchmark with a held-out test split.",
@@ -64,6 +71,7 @@ export type Project = {
   description: string;
   tags: string[];
   href: string;
+  writeup?: string;
 };
 
 export const projects: Project[] = [
@@ -73,6 +81,7 @@ export const projects: Project[] = [
       "Modular framework to detect and mitigate cultural and religious bias in LLM output. SDK, REST API, Streamlit app, and MCP server.",
     tags: ["Python", "FastAPI", "LLM-as-judge", "MCP"],
     href: "https://github.com/JaspreetSinghA/biaslense",
+    writeup: "biaslens-llm-as-judge",
   },
   {
     name: "LiftLog",
@@ -136,3 +145,5 @@ export const skills: Record<string, string[]> = {
 
 export const interests =
   "Competitive bhangra (Bhangra Empire All-Stars, Warriors halftime show), cross country (18:25 5K), and swimming.";
+
+export const blogDescription = "Notes on embedded systems, race-car electronics, AI evaluation, and what I'm building.";
