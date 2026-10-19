@@ -39,7 +39,6 @@ jobs:
             --accept '200..=299,429'
             --exclude '^https://(www\.)?linkedin\.com'
             --remap '^https://www\.jaspreetahluwalia\.com/ file://${{ github.workspace }}/dist/'
-            --exclude '^https://fonts\.(googleapis|gstatic)\.com'
             --exclude '^https://gc\.zgo\.at'
             dist
           fail: true
