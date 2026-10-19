@@ -1,0 +1,72 @@
+name: Sync GitHub activity to blog
+
+# Runs once a day. The script also refuses to write more than one post per UTC day,
+# so manual re-runs can't exceed the daily limit either.
+on:
+  schedule:
+    - cron: "17 14 * * *" # 14:17 UTC daily (off the top of the hour to avoid queue spikes)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the post without committing it"
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: sync-activity
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'JaspreetSinghA/personalwebsite'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      created: ${{ steps.sync.outputs.created }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - id: sync
+        run: node scripts/sync-activity.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_USER: ${{ github.repository_owner }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+
+      - name: Verify the site still builds
+        if: steps.sync.outputs.created == 'true'
+        run: npm ci && npm run build
+
+      - name: Commit post
+        if: steps.sync.outputs.created == 'true'
+        env:
+          POST: ${{ steps.sync.outputs.path }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$POST"
+          git commit -m "chore(blog): activity update $(date -u +%F)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so deploy explicitly.
+  deploy:
+    needs: sync
+    if: needs.sync.outputs.created == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ref: main
