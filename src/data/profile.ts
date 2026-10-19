@@ -8,6 +8,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/jaspreet-ahluwalia007/",
   resume: "/Jaspreet_Ahluwalia_Resume.pdf",
   photo: "/headshot.jpg",
+  goatcounter: "jaspreeta",
   seeking: "Seeking Summer 2027 internships in embedded systems, hardware, and electrical engineering.",
   summary:
     "I build embedded systems for an electric race car and tools that measure bias in AI. Currently writing SPI and CAN drivers for Spartan Racing's vehicle control unit, and maintaining BiasLens, an open-source LLM bias-detection toolkit.",

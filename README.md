@@ -36,12 +36,6 @@ npm run build    # type-check + build to dist/
 - `.github/workflows/sync-activity.yml` — runs weekly (Mondays 14:17 UTC) and can be triggered manually (with a dry-run option). It runs `scripts/sync-activity.mjs`, which collects public commits, PRs, releases, and new repos since the last activity post and writes `src/content/blog/activity-YYYY-MM-DD.md`. Posts are at least 6 days apart (never more than one per UTC day), weeks with no activity are skipped, and the site is verified to build before the post is committed and deployed. Activity posts are tagged `activity` and listed at `/blog/activity/`, separate from the main blog, homepage, and RSS feed.
 - `.github/workflows/links.yml` — builds the site and checks every link with [lychee](https://github.com/lycheeverse/lychee) on PRs and weekly.
 
-### Analytics (optional)
+### Analytics
 
-Cookie-free page-view stats via [GoatCounter](https://www.goatcounter.com): create a free site, then add a repository variable **Settings → Secrets and variables → Actions → Variables → `GOATCOUNTER_CODE`** set to your site code (e.g. `jaspreet` for `jaspreet.goatcounter.com`). The tracking script is only included when this is set.
-
-Preview a sync locally without writing anything:
-
-```sh
-DRY_RUN=true npm run sync:activity
-```
+Cookie-free page-view stats via [GoatCounter](https://jaspreeta.goatcounter.com). The site code is `profile.goatcounter` in `src/data/profile.ts`; the script is only included in production builds.
