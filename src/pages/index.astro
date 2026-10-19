@@ -1,0 +1,130 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import PostList from "../components/PostList.astro";
+import { getPosts } from "../lib/posts";
+import { profile, experience, projects, education, honors, leadership, skills, interests } from "../data/profile";
+
+const recent = (await getPosts()).slice(0, 3);
+---
+
+<Base>
+  <section class="pb-16">
+    <img
+      src="/my-photo.jpg"
+      alt={profile.name}
+      width="80"
+      height="80"
+      class="mb-8 size-20 rounded-full object-cover grayscale-[20%] ring-1 ring-zinc-200 dark:ring-zinc-800"
+    />
+    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{profile.name}</h1>
+    <p class="mt-3 text-lg text-zinc-500 dark:text-zinc-400">{profile.role}</p>
+    <p class="mt-8 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-300">{profile.summary}</p>
+    <div class="mt-10 flex flex-wrap gap-3 text-sm">
+      <a href={`mailto:${profile.email}`} class="rounded-full bg-zinc-900 px-5 py-2.5 font-medium text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300">Get in touch</a>
+      <a href={profile.github} target="_blank" rel="noopener" class="rounded-full px-5 py-2.5 font-medium ring-1 ring-zinc-200 transition hover:bg-zinc-50 dark:ring-zinc-800 dark:hover:bg-zinc-900">GitHub</a>
+      <a href={profile.linkedin} target="_blank" rel="noopener" class="rounded-full px-5 py-2.5 font-medium ring-1 ring-zinc-200 transition hover:bg-zinc-50 dark:ring-zinc-800 dark:hover:bg-zinc-900">LinkedIn</a>
+    </div>
+  </section>
+
+  <Section id="work" title="Experience">
+    <ol class="flex flex-col gap-12">
+      {
+        experience.map((job) => (
+          <li class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-8">
+            <p class="pt-0.5 font-mono text-xs text-zinc-400 dark:text-zinc-500">{job.period}</p>
+            <div>
+              <h3 class="font-medium">
+                {job.link ? <a href={job.link} target="_blank" rel="noopener" class="hover:underline hover:underline-offset-4">{job.org} ↗</a> : job.org}
+                <span class="font-normal text-zinc-400 dark:text-zinc-500"> · {job.orgNote}</span>
+              </h3>
+              <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{job.role}{job.location && ` · ${job.location}`}</p>
+              <ul class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                {job.points.map((p) => (
+                  <li class="relative pl-4 before:absolute before:top-[0.6em] before:left-0 before:size-1 before:rounded-full before:bg-zinc-300 dark:before:bg-zinc-700">{p}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <Section id="projects" title="Projects">
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        projects.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener" class="group flex flex-col rounded-2xl p-5 ring-1 ring-zinc-200 transition hover:-translate-y-0.5 hover:ring-zinc-400 dark:ring-zinc-800 dark:hover:ring-zinc-600">
+            <h3 class="flex items-center justify-between font-medium">
+              {p.name}
+              <span class="text-zinc-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{p.description}</p>
+            <ul class="mt-4 flex flex-wrap gap-1.5">
+              {p.tags.map((t) => (
+                <li class="rounded-full bg-zinc-100 px-2.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">{t}</li>
+              ))}
+            </ul>
+          </a>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="writing" title="Writing">
+    <PostList posts={recent} />
+    <a href="/blog/" class="mt-6 inline-block text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">All posts →</a>
+  </Section>
+
+  <Section id="education" title="Education">
+    <ul class="flex flex-col gap-8">
+      {
+        education.map((e) => (
+          <li class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-8">
+            <p class="pt-0.5 font-mono text-xs text-zinc-400 dark:text-zinc-500">{e.period}</p>
+            <div>
+              <h3 class="font-medium">{e.school}</h3>
+              <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{e.detail}</p>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{e.note}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="mt-10 flex flex-wrap gap-2">
+      {honors.map((h) => <li class="rounded-full px-3 py-1 text-xs text-zinc-600 ring-1 ring-zinc-200 dark:text-zinc-400 dark:ring-zinc-800">{h}</li>)}
+    </ul>
+  </Section>
+
+  <Section id="leadership" title="Leadership">
+    <ul class="flex flex-col gap-8">
+      {
+        leadership.map((l) => (
+          <li class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-8">
+            <p class="pt-0.5 font-mono text-xs text-zinc-400 dark:text-zinc-500">{l.period}</p>
+            <div>
+              <h3 class="font-medium">{l.org}</h3>
+              <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{l.role}</p>
+              <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{l.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section id="skills" title="Skills">
+    <dl class="grid gap-6 sm:grid-cols-2">
+      {
+        Object.entries(skills).map(([group, items]) => (
+          <div>
+            <dt class="text-sm font-medium">{group}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{items.join(" · ")}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="mt-10 text-sm text-zinc-500 dark:text-zinc-400"><span class="font-medium text-zinc-900 dark:text-zinc-100">Off the clock:</span> {interests}</p>
+  </Section>
+</Base>
