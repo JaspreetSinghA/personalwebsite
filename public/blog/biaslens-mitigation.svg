@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 660 328" width="660" height="328" font-family="Inter, system-ui, sans-serif" font-size="13" role="img" aria-labelledby="t d">
+<title id="t">Baseline vs retrieval-based prompting, mean score per dimension</title>
+<desc id="d">Accuracy: baseline 3.36, retrieval-based 4.40; Relevance: baseline 3.49, retrieval-based 4.27; Fairness: baseline 2.27, retrieval-based 4.07; Neutrality: baseline 2.42, retrieval-based 3.93; Representation: baseline 2.50, retrieval-based 4.00; Bias composite: baseline 2.83, retrieval-based 4.13. Scale 1 to 5, higher is better.</desc>
+<circle cx="130" cy="18" r="5" fill="#a1a1aa"/><text x="140" y="22" fill="#71717a">Baseline</text>
+<circle cx="220" cy="18" r="5" fill="#10b981"/><text x="230" y="22" fill="#71717a">Retrieval-based</text>
+<line x1="130.0" x2="130.0" y1="40" y2="280" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="130.0" y="300" fill="#71717a" text-anchor="middle" font-size="12">1</text>
+<line x1="250.0" x2="250.0" y1="40" y2="280" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="250.0" y="300" fill="#71717a" text-anchor="middle" font-size="12">2</text>
+<line x1="370.0" x2="370.0" y1="40" y2="280" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="370.0" y="300" fill="#71717a" text-anchor="middle" font-size="12">3</text>
+<line x1="490.0" x2="490.0" y1="40" y2="280" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="490.0" y="300" fill="#71717a" text-anchor="middle" font-size="12">4</text>
+<line x1="610.0" x2="610.0" y1="40" y2="280" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="610.0" y="300" fill="#71717a" text-anchor="middle" font-size="12">5</text>
+<text x="116" y="64" fill="#71717a" text-anchor="end">Accuracy</text>
+<line x1="413.2" x2="538.0" y1="60" y2="60" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="413.2" cy="60" r="6" fill="#a1a1aa"/><circle cx="538.0" cy="60" r="6" fill="#10b981"/>
+<text x="402.2" y="64" fill="#71717a" text-anchor="end" font-size="11">3.36</text>
+<text x="549.0" y="64" fill="#71717a" font-size="11">4.40</text>
+<text x="116" y="104" fill="#71717a" text-anchor="end">Relevance</text>
+<line x1="428.8" x2="522.4" y1="100" y2="100" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="428.8" cy="100" r="6" fill="#a1a1aa"/><circle cx="522.4" cy="100" r="6" fill="#10b981"/>
+<text x="417.8" y="104" fill="#71717a" text-anchor="end" font-size="11">3.49</text>
+<text x="533.4" y="104" fill="#71717a" font-size="11">4.27</text>
+<text x="116" y="144" fill="#71717a" text-anchor="end">Fairness</text>
+<line x1="282.4" x2="498.4" y1="140" y2="140" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="282.4" cy="140" r="6" fill="#a1a1aa"/><circle cx="498.4" cy="140" r="6" fill="#10b981"/>
+<text x="271.4" y="144" fill="#71717a" text-anchor="end" font-size="11">2.27</text>
+<text x="509.4" y="144" fill="#71717a" font-size="11">4.07</text>
+<text x="116" y="184" fill="#71717a" text-anchor="end">Neutrality</text>
+<line x1="300.4" x2="481.6" y1="180" y2="180" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="300.4" cy="180" r="6" fill="#a1a1aa"/><circle cx="481.6" cy="180" r="6" fill="#10b981"/>
+<text x="289.4" y="184" fill="#71717a" text-anchor="end" font-size="11">2.42</text>
+<text x="492.6" y="184" fill="#71717a" font-size="11">3.93</text>
+<text x="116" y="224" fill="#71717a" text-anchor="end">Representation</text>
+<line x1="310.0" x2="490.0" y1="220" y2="220" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="310.0" cy="220" r="6" fill="#a1a1aa"/><circle cx="490.0" cy="220" r="6" fill="#10b981"/>
+<text x="299.0" y="224" fill="#71717a" text-anchor="end" font-size="11">2.50</text>
+<text x="501.0" y="224" fill="#71717a" font-size="11">4.00</text>
+<text x="116" y="264" fill="#71717a" text-anchor="end" font-weight="600">Bias composite</text>
+<line x1="349.6" x2="505.6" y1="260" y2="260" stroke="#10b981" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/>
+<circle cx="349.6" cy="260" r="6" fill="#a1a1aa"/><circle cx="505.6" cy="260" r="6" fill="#10b981"/>
+<text x="338.6" y="264" fill="#71717a" text-anchor="end" font-size="11">2.83</text>
+<text x="516.6" y="264" fill="#71717a" font-size="11">4.13</text>
+<text x="370.0" y="324" fill="#71717a" text-anchor="middle" font-size="11">Mean rubric score (1–5, higher is better)</text></svg>
