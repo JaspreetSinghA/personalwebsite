@@ -17,3 +17,8 @@
     @apply bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900;
   }
 }
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+}
