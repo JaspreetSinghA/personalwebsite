@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import Section from "../components/Section.astro";
 import PostList from "../components/PostList.astro";
 import { getPosts, getWriting } from "../lib/posts";
-import { profile, experience, projects, education, honors, leadership, skills, interests } from "../data/profile";
+import { profile, experience, projects, education, honors, leadership, skills, about, talks } from "../data/profile";
 
 const recent = (await getWriting()).slice(0, 3);
 const published = new Set((await getPosts()).map((p) => p.id));
@@ -32,6 +32,12 @@ const published = new Set((await getPosts()).map((p) => p.id));
       <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="rounded-full px-5 py-2.5 font-medium ring-1 ring-zinc-200 transition hover:bg-zinc-50 dark:ring-zinc-800 dark:hover:bg-zinc-900">LinkedIn</a>
     </div>
   </section>
+
+  <Section id="about" title="About">
+    <div class="flex max-w-xl flex-col gap-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+      {about.map((para) => <p>{para}</p>)}
+    </div>
+  </Section>
 
   <Section id="work" title="Experience">
     <ol class="flex flex-col gap-12">
@@ -77,8 +83,15 @@ const published = new Set((await getPosts()).map((p) => p.id));
                 <li class="rounded-full bg-zinc-100 px-2.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">{t}</li>
               ))}
             </ul>
-            {p.writeup && published.has(p.writeup) && (
-              <a href={`/blog/${p.writeup}/`} class="relative z-10 mt-4 self-start text-sm font-medium hover:underline hover:underline-offset-4">Case study →</a>
+            {((p.writeup && published.has(p.writeup)) || p.links) && (
+              <div class="relative z-10 mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                {p.writeup && published.has(p.writeup) && (
+                  <a href={`/blog/${p.writeup}/`} class="font-medium hover:underline hover:underline-offset-4">Case study →</a>
+                )}
+                {p.links?.map((l) => (
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-zinc-100">{l.label} ↗</a>
+                ))}
+              </div>
             )}
           </div>
         ))
@@ -89,6 +102,22 @@ const published = new Set((await getPosts()).map((p) => p.id));
   <Section id="writing" title="Writing">
     <PostList posts={recent} />
     <a href="/blog/" class="mt-6 inline-block text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">All posts →</a>
+  </Section>
+
+  <Section id="talks" title="Talks">
+    <ul class="flex flex-col gap-6">
+      {
+        talks.map((t) => (
+          <li class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-8">
+            <p class="pt-0.5 font-mono text-xs text-zinc-400 dark:text-zinc-500">{t.year}</p>
+            <div>
+              <h3 class="font-medium">{t.event}</h3>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">{t.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   </Section>
 
   <Section id="education" title="Education">
@@ -106,9 +135,7 @@ const published = new Set((await getPosts()).map((p) => p.id));
         ))
       }
     </ul>
-    <ul class="mt-10 flex flex-wrap gap-2">
-      {honors.map((h) => <li class="rounded-full px-3 py-1 text-xs text-zinc-600 ring-1 ring-zinc-200 dark:text-zinc-400 dark:ring-zinc-800">{h}</li>)}
-    </ul>
+    <p class="mt-8 text-sm text-zinc-500 dark:text-zinc-400"><span class="font-medium text-zinc-900 dark:text-zinc-100">Honors:</span> {honors.join(" · ")}</p>
   </Section>
 
   <Section id="leadership" title="Leadership">
@@ -139,6 +166,5 @@ const published = new Set((await getPosts()).map((p) => p.id));
         ))
       }
     </dl>
-    <p class="mt-10 text-sm text-zinc-500 dark:text-zinc-400"><span class="font-medium text-zinc-900 dark:text-zinc-100">Off the clock:</span> {interests}</p>
   </Section>
 </Base>

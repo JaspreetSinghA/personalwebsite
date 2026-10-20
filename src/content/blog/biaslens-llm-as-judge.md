@@ -68,6 +68,8 @@ I re-rated the results on the same rubric. For this comparison, *bias composite*
 | Contextual | 4.07 | 3.53 | 4.13 | 3.33 | 3.76 |
 | **Retrieval-based** | **4.40** | **4.07** | 3.93 | **4.00** | **4.13** |
 
+![Dot plot comparing baseline and retrieval-based prompting on each rubric dimension. Retrieval-based scores higher on all six, with the biggest gains in Fairness (2.27 to 4.07) and Neutrality (2.42 to 3.93).](/blog/biaslens-mitigation.svg)
+
 Retrieval-based prompting did best on almost every dimension. It raised the composite from 2.83 to 4.13, an average **+58% per response** over baseline. Simply telling the model to "be unbiased" helped about as much as adding context, but less than grounding it in facts. This is a small test: **5 prompts × 3 models**. Treat it as a direction, not a final result. Based on this, BiasLens's mitigation step now tries retrieval grounding first for most bias types.
 
 ## Shipping it
