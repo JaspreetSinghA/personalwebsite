@@ -148,7 +148,7 @@ export const skills: Record<string, string[]> = {
 };
 
 export const about = [
-  "I like knowing why a system behaves the way it does, down to the sensor. On Spartan Racing that means reading the BMS datasheets, writing drivers for our vehicle control unit, and checking that a temperature reading actually measures what we think it does. Once, it didn't: the hottest sensors in our pack were picking up fuselink heat, not cell temperature.",
+  "I like figuring out why things work the way they do. On Spartan Racing I write drivers for our vehicle control unit and dig through battery data. Turns out the hottest sensors in our pack were picking up fuselink heat, not cell temperature.",
   "BiasLens comes from the same instinct, pointed at a question close to home: how do language models describe Sikhs, and can you measure that honestly? It's taught me that a score is only useful if people agree with it.",
   "Outside engineering I dance competitive bhangra with Bhangra Empire All-Stars, run cross country (18:25 5K), and swim.",
 ];
