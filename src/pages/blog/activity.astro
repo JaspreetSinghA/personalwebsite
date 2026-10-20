@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostList from "../../components/PostList.astro";
+import { getActivity } from "../../lib/posts";
+import { profile } from "../../data/profile";
+
+const posts = await getActivity();
+const description = "Automated weekly roundups of my public GitHub commits, pull requests, and releases.";
+---
+
+<Base title={`GitHub activity — ${profile.name}`} description={description} image="/og/blog/activity.png">
+  <a href="/blog/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">← Blog</a>
+  <h1 class="mt-8 text-4xl font-semibold tracking-tight">GitHub activity</h1>
+  <p class="mt-3 text-zinc-500 dark:text-zinc-400">{description}</p>
+  <div class="mt-12">
+    {posts.length ? <PostList posts={posts} /> : <p class="text-zinc-500">No roundups yet — the first one is generated on the next weekly sync.</p>}
+  </div>
+</Base>

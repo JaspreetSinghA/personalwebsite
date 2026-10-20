@@ -1,10 +1,10 @@
 name: Sync GitHub activity to blog
 
-# Runs once a day. The script also refuses to write more than one post per UTC day,
-# so manual re-runs can't exceed the daily limit either.
+# Runs once a week. The script also refuses to write a post within 6 days of the previous one
+# (and never more than one per UTC day), so manual re-runs can't exceed that either.
 on:
   schedule:
-    - cron: "17 14 * * *" # 14:17 UTC daily (off the top of the hour to avoid queue spikes)
+    - cron: "17 14 * * 1" # Mondays 14:17 UTC (off the top of the hour to avoid queue spikes)
   workflow_dispatch:
     inputs:
       dry_run:
