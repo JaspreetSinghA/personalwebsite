@@ -1,16 +1,24 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PostList from "../../components/PostList.astro";
-import { getPosts } from "../../lib/posts";
-import { profile } from "../../data/profile";
+import { getWriting, getActivity } from "../../lib/posts";
+import { profile, blogDescription } from "../../data/profile";
 
-const posts = await getPosts();
+const posts = await getWriting();
+const activity = await getActivity();
 ---
 
-<Base title={`Blog — ${profile.name}`} description="Notes on embedded systems, race-car electronics, AI evaluation, and things I'm building.">
+<Base title={`Blog — ${profile.name}`} description={blogDescription} image="/og/blog.png">
   <h1 class="text-4xl font-semibold tracking-tight">Blog</h1>
-  <p class="mt-3 text-zinc-500 dark:text-zinc-400">Notes on embedded systems, race-car electronics, AI evaluation, and what I'm building.</p>
+  <p class="mt-3 text-zinc-500 dark:text-zinc-400">{blogDescription}</p>
   <div class="mt-12">
     {posts.length ? <PostList posts={posts} /> : <p class="text-zinc-500">No posts yet.</p>}
   </div>
+  {
+    activity.length > 0 && (
+      <p class="mt-12 text-sm text-zinc-500 dark:text-zinc-400">
+        Looking for commit-level detail? See the automated <a href="/blog/activity/" class="font-medium text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-100">weekly GitHub activity</a> roundups.
+      </p>
+    )
+  }
 </Base>
