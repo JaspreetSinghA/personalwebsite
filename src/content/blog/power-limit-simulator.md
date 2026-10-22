@@ -1,12 +1,18 @@
 ---
-title: "Most of my model problems were data problems"
-description: "Building a power-limit simulator for Spartan Racing's battery pack, and why fixing the data, the validation, and one physics symmetry mattered more than tuning the model."
+title: "The battery model that heated up a parked car"
+description: "Building a power-limit simulator for Spartan Racing's battery, and why the data, the validation, and one physics symmetry mattered more than tuning the model."
 date: 2026-10-22
 tags: ["spartan-racing", "battery", "modeling", "validation"]
 draft: true
 ---
 
 <!-- DRAFT: needs Spartan Racing's OK before publishing. Kept to the general story on purpose: no VCU code details, parameter values, run IDs, raw temps/power figures, or pack specifics. -->
+
+Our battery pack sat idle for 40 minutes and its temperature didn't move. Our thermal model said it should have climbed almost 40 °C.
+
+I was building a tool on top of that model for Spartan Racing, and fixing it was only the first problem. Most of the rest were in the data.
+
+## The question
 
 Our car's battery management system (BMS) shuts the car down if the average cell temperature hits 60 °C. That ends the run. The main thing we control to stay under it is the power limit (PL), the cap on how much power the car can pull from the pack. Lower PL means less current, less heat, and slower laps.
 
@@ -30,7 +36,7 @@ The old model had a constant heat term that made up about 60% of all its heat, w
 - Cutting the PL barely changed the predicted peak, because most of the heat didn't depend on current.
 - Slower laps made the run *hotter*, because the constant heat had more time to add up.
 
-The test that settled it was 40 minutes of the pack sitting idle. The real temperature stayed flat. The model predicted it would climb about 1 °C a minute. Removing that term cut the idle error from 3.0 °C to 0.2 °C.
+The idle test from the top of this post is what settled it: about 1 °C a minute of heating with no current flowing. Removing that term cut the idle error from 3.0 °C to 0.2 °C.
 
 If a model can't get "nothing is happening" right, more tuning won't fix it.
 
