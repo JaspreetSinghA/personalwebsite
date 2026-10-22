@@ -1,5 +1,5 @@
 ---
-title: "The battery model that heated up a parked car"
+title: "Our battery model said an idle pack was heating up"
 description: "Building a power-limit simulator for Spartan Racing's battery, and why the data, the validation, and one physics symmetry mattered more than tuning the model."
 date: 2026-10-22
 tags: ["spartan-racing", "battery", "modeling", "validation"]
