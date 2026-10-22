@@ -22,6 +22,23 @@ draft: true
 - Never use the `activity` tag. It's reserved for the automated weekly GitHub summaries (`scripts/sync-activity.mjs`), and posts with that tag are hidden from the main blog.
 - Images or charts go in `public/blog/` and are referenced as `/blog/<file>`. Give every image real alt text. Prefer SVG or compressed PNG/JPG, and strip EXIF from photos.
 
+## Title and hook
+
+The title and first two sentences decide whether anyone reads the rest. Spend real effort on them, but keep them plain and true.
+
+**Title**
+- Name the specific, surprising thing: a result, a failure, or an odd detail from the work. Make a reader want to know how or why.
+- Keep it short (under ~70 characters) and concrete. Real nouns and numbers, no buzzwords.
+- Avoid generic patterns: "How I built X", "Lessons from X", "A deep dive into X", "X: a journey", and "Title: Subtitle" colons.
+- It must be literally true. No clickbait and no exaggeration.
+- Good: "Our hottest cells weren't our hottest cells". Bad: "Exploring thermal modeling for electric race cars".
+
+**Hook (the first 1–2 sentences)**
+- Open with the moment: the strange observation, the thing that broke, or the number that didn't make sense. Background comes after.
+- Never start with "In this post", a definition, a broad statement about the field, or a rhetorical question.
+- No fake suspense. Skip one-word paragraphs, "But there was a catch", and "Little did I know".
+- Then explain within a few sentences what the project was and why it mattered.
+
 ## What to write
 
 Write it like an engineer explaining the work to another engineer, not like a changelog:
