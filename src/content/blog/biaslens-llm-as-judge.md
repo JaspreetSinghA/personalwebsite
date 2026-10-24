@@ -1,12 +1,14 @@
 ---
-title: "Measuring bias in LLM output: from a rule-based score to an LLM judge"
+title: "My bias detector was biased against my own religion"
 description: "How BiasLens went from regex rules calibrated on 276 human ratings to a structured LLM-as-judge, what the inter-rater numbers actually said, and which mitigation strategy worked best."
 date: 2026-10-19
 tags: ["biaslens", "ai-evaluation", "python", "case-study"]
 draft: false
 ---
 
-[BiasLens](https://github.com/JaspreetSinghA/biaslense) is an open-source toolkit that detects and reduces cultural and religious bias in text written by large language models. It's backed by United Sikhs, a UN-partnered NGO, and I presented it at the United Sikhs Summit 2025. This post covers the measurement side: how I score bias, how far I can trust those scores, and what the data says.
+I gave my bias detector a respectful paragraph about *seva*, the Sikh idea of selfless service. It flagged it as high risk.
+
+That detector was the first version of [BiasLens](https://github.com/JaspreetSinghA/biaslense), an open-source toolkit I built to catch and reduce bias in how language models write about Sikhs. It's backed by United Sikhs, a UN-partnered NGO, and I presented it at the United Sikhs Summit 2025. Rebuilding it took human ratings, an LLM judge, and a lot of humility, and the best fix I tested raised the bias score from 2.83 to 4.13 out of 5.
 
 ## The problem
 
@@ -41,7 +43,7 @@ The first scorer started each dimension at a baseline and subtracted penalties w
 
 The full method is in [ALGORITHM.md](https://github.com/JaspreetSinghA/biaslense/blob/main/ALGORITHM.md).
 
-Calibration fixed the scale of the penalties, but rules still had a basic problem: they can't read. In a self-test, accurate and respectful text, like a paragraph explaining *seva* (selfless service), came back as high risk. It simply mentioned the same topics as the biased examples. An embedding-similarity check made this worse, because any text about Sikhism sits close to every other text about Sikhism.
+Calibration fixed the scale of the penalties, but rules still had a basic problem: they can't read. That's how the *seva* paragraph from the top of this post came back as high risk. It simply mentioned the same topics as the biased examples. An embedding-similarity check made this worse, because any text about Sikhism sits close to every other text about Sikhism.
 
 ## Version 2: a structured LLM-as-judge
 
