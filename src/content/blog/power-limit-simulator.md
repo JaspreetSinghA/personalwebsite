@@ -3,14 +3,14 @@ title: "Our battery model said an idle pack was heating up"
 description: "Building a power-limit simulator for Spartan Racing's battery, and why the data, the validation, and one physics symmetry mattered more than tuning the model."
 date: 2026-10-22
 tags: ["spartan-racing", "battery", "modeling", "validation"]
-draft: true
+draft: false
 ---
-
-<!-- DRAFT: needs Spartan Racing's OK before publishing. Kept to methods on purpose: nothing on how close the car runs to the temperature limit, what PL changes do on our car, how the control code applies the limit, parameter values, run IDs, raw data, or pack specifics. -->
 
 Our battery pack sat idle for 40 minutes and its temperature didn't move. Our thermal model said it should have climbed almost 40 °C.
 
 I was building a tool on top of that model for Spartan Racing, and fixing it was only the first problem. Most of the rest were in the data.
+
+*Fair warning: other teams can read too, so anything that would actually help them is missing. If a paragraph suddenly gets vague, that's not bad writing. That's opsec. (Okay, it might also be bad writing.)*
 
 ## The question
 
