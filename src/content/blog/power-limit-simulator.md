@@ -73,7 +73,9 @@ The fix was to pin the pack's heat capacity to its physical value, computed from
 
 Predicting runs and days the model never saw:
 
-| | Old model | One-node | **Two-node** |
+<img src="/blog/power-limit-model-error.svg" alt="Bar chart of peak temperature error on unseen data. On unseen runs: old model 3.76 °C, one-node 2.95 °C, two-node 1.05 °C. On unseen days: old model 4.19 °C, one-node 4.37 °C, two-node 1.47 °C." width="660" height="300" loading="lazy" />
+
+| Error | Old model | One-node | **Two-node** |
 |---|---:|---:|---:|
 | Peak error, unseen runs | 3.76 °C | 2.95 °C | **1.05 °C** |
 | Peak error, unseen days | 4.19 °C | 4.37 °C | **1.47 °C** |
