@@ -6,7 +6,7 @@ tags: ["spartan-racing", "battery", "modeling", "validation"]
 draft: true
 ---
 
-<!-- DRAFT: needs Spartan Racing's OK before publishing. Kept to the general story on purpose: no VCU code details, parameter values, run IDs, raw temps/power figures, or pack specifics. -->
+<!-- DRAFT: needs Spartan Racing's OK before publishing. Kept to methods on purpose: nothing on how close the car runs to the temperature limit, what PL changes do on our car, how the control code applies the limit, parameter values, run IDs, raw data, or pack specifics. -->
 
 Our battery pack sat idle for 40 minutes and its temperature didn't move. Our thermal model said it should have climbed almost 40 °C.
 
@@ -14,20 +14,20 @@ I was building a tool on top of that model for Spartan Racing, and fixing it was
 
 ## The question
 
-Our car's battery management system (BMS) shuts the car down if the average cell temperature hits 60 °C. That ends the run. The main thing we control to stay under it is the power limit (PL), the cap on how much power the car can pull from the pack. Lower PL means less current, less heat, and slower laps.
+The rules shut the car down if the average cell temperature hits 60 °C. That ends the run. One thing we control is the power limit (PL), the cap on how much power the car can pull from the pack. Lower PL means less heat and slower laps.
 
-My assignment was one question: *if we predict we'll hit 65 °C, what PL gets us to 59 °C?*
+My job was to answer: *for a given run, what PL keeps the peak temperature under a target?*
 
 ## The simulator
 
 The idea is simple:
 
 1. Take a real logged run and its current, second by second.
-2. Pick a lower PL and cap the current at PL ÷ pack voltage at every moment.
-3. Run that current through a thermal model to predict the temperature and its peak.
+2. Replay it as if the car had a lower PL.
+3. Run that through a thermal model to predict the temperature and its peak.
 4. Bisect to find the highest PL whose predicted peak stays under the target.
 
-The first version used the team's existing thermal model. It beat the naive "temperature stays the same" guess, but it under-predicted the peak on every run I checked, sometimes by close to 10 °C. That's the dangerous direction to be wrong in.
+The first version used the team's existing thermal model. It beat the naive "temperature stays the same" guess, but it under-predicted the peak on every run I checked. That's the dangerous direction to be wrong in.
 
 ## The model had a fake heat source
 
@@ -36,7 +36,7 @@ The old model had a constant heat term that made up about 60% of all its heat, w
 - Cutting the PL barely changed the predicted peak, because most of the heat didn't depend on current.
 - Slower laps made the run *hotter*, because the constant heat had more time to add up.
 
-The idle test from the top of this post is what settled it: about 1 °C a minute of heating with no current flowing. Removing that term cut the idle error from 3.0 °C to 0.2 °C.
+The idle test from the top of this post is what settled it: the model heated the pack by about 1 °C a minute with no current flowing. Removing that term cut the idle error from 3.0 °C to 0.2 °C.
 
 If a model can't get "nothing is happening" right, more tuning won't fix it.
 
@@ -48,15 +48,13 @@ This took longer than any modeling.
 
 **One broken channel meant more.** When I found one sensor channel decoding wrong, the cause turned out to affect others too, including current and state of charge. A bad state-of-charge reading was quietly failing a validity check and chopping runs into pieces too short to use. Now when something changes upstream I check every channel, not just the one that looked off.
 
-**Every dropped log got a reason.** I kept a manifest: one spreadsheet listing every log, whether it's used, and why not (wrong pack, duplicate, BMS not logging, throttle cut, logger dropout, not heating). Five "different" files turned out to be byte-identical copies.
-
-<!-- TODO (needs team OK): add more of the data-cleanup detail here if the team is fine with it. -->
+**Every dropped log got a reason.** I kept a manifest: one spreadsheet listing every log, whether it's used, and why not (wrong pack, duplicate, BMS not logging, logger dropout). Five "different" files turned out to be byte-identical copies.
 
 ## Doing validation properly
 
 I only had 18 usable runs, so it was easy to fool myself. The rules I used:
 
-- **Lock a test set.** The competition data was held out the whole time and scored once at the end. The code refuses to score it without a saved model choice, and refuses to score it twice.
+- **Lock a test set.** One event's data was held out the whole time and scored once at the end. The code refuses to score it without a saved model choice, and refuses to score it twice.
 - **Hold out whole runs, not laps.** Lap 3 starts where lap 2 ended, so holding out one lap leaks the answer.
 - **Also hold out whole days.** Runs on the same day share weather and setup.
 - **Tune only on the practice scores.** Tweaking until the test looks good turns the test into training data.
@@ -84,12 +82,10 @@ Predicting runs and days the model never saw:
 
 On the locked test set, scored once, the two-node model missed the peaks by under 1 °C on average. The old model missed by about 5 °C.
 
-With the new model, lowering the PL actually lowers the peak, even after counting the slower laps. The extra time adds back less than half the heat the cut removes.
-
 ## Mistakes I made
 
-- I modeled the power limit from an assumption instead of reading the control code. When I finally read it, the limit applied at a different point than I'd assumed, and fixing it doubled the predicted effect of a PL cut. I'd also asked the team a question that code I already had would have answered.
-- My first filter for picking the right pack used a voltage cutoff that would have thrown out a real run at low charge.
+- I modeled how the power limit works from an assumption instead of reading the control code. When I finally read it, I was wrong, and fixing it changed the results a lot. I'd also asked the team a question that code I already had would have answered.
+- My first filter for sorting logs by pack used a voltage cutoff that would have thrown out a real run at low charge.
 - I found a few single-sample glitches in one day's data *after* the final test. I left them alone instead of refitting, so the test stayed honest.
 
 ## What I learned
@@ -100,6 +96,6 @@ With the new model, lowering the PL actually lowers the peak, even after countin
 4. Hold out whole runs, lock the test set, and tune only on practice scores.
 5. Read the actual control code before you model the controller.
 
-## Still open
+## What's next
 
-No logged run has reached 60 °C yet, so predictions right at the fault limit are still an extrapolation, and I'd keep a 1–2 °C margin. Next is logging hot runs cleanly and testing the frozen model on them before any refit.
+The model is frozen. Next is testing it on new runs, before any refit.
