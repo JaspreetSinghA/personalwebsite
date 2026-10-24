@@ -57,7 +57,7 @@ const published = new Set((await getPosts()).map((p) => p.id));
                 ))}
               </ul>
               {job.writeup && published.has(job.writeup) && (
-                <a href={`/blog/${job.writeup}/`} class="mt-4 inline-block text-sm font-medium hover:underline hover:underline-offset-4">Read the case study →</a>
+                <a href={`/blog/${job.writeup}/`} class="mt-4 inline-block text-sm font-medium text-emerald-700 dark:text-emerald-400 hover:underline hover:underline-offset-4">Read the case study →</a>
               )}
             </div>
           </li>
@@ -86,7 +86,7 @@ const published = new Set((await getPosts()).map((p) => p.id));
             {((p.writeup && published.has(p.writeup)) || p.links) && (
               <div class="relative z-10 mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
                 {p.writeup && published.has(p.writeup) && (
-                  <a href={`/blog/${p.writeup}/`} class="font-medium hover:underline hover:underline-offset-4">Case study →</a>
+                  <a href={`/blog/${p.writeup}/`} class="font-medium text-emerald-700 dark:text-emerald-400 hover:underline hover:underline-offset-4">Case study →</a>
                 )}
                 {p.links?.map((l) => (
                   <a href={l.href} target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-zinc-100">{l.label} ↗</a>
