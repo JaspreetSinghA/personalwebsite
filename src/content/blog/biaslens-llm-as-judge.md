@@ -8,7 +8,7 @@ draft: false
 
 I gave my bias detector a respectful paragraph about *seva*, the Sikh idea of selfless service. It flagged it as high risk.
 
-That detector was the first version of [BiasLens](https://github.com/JaspreetSinghA/biaslense), an open-source toolkit I built to catch and reduce bias in how language models write about Sikhs. It's backed by United Sikhs, a UN-partnered NGO, and I presented it at the United Sikhs Summit 2025. Rebuilding it took human ratings, an LLM judge, and a lot of humility, and the best fix I tested raised the bias score from 2.83 to 4.13 out of 5.
+That detector was the first version of [BiasLens](https://github.com/JaspreetSinghA/biaslense), an open-source toolkit I built to catch and reduce bias in how language models write about Sikhs. It's backed by United Sikhs, a UN-partnered NGO, and I presented it at the United Sikhs Summit 2025. Rebuilding it took human ratings and an LLM judge. The best fix I tested raised the bias score from 2.83 to 4.13 out of 5.
 
 ## The problem
 
