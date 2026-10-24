@@ -13,12 +13,19 @@
   body {
     @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100;
   }
+  a {
+    @apply decoration-emerald-500;
+  }
   ::selection {
-    @apply bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900;
+    @apply bg-emerald-200 text-emerald-950 dark:bg-emerald-800 dark:text-emerald-50;
   }
 }
 
 .prose table {
   display: block;
   overflow-x: auto;
+}
+
+.prose a {
+  text-decoration-color: var(--color-emerald-500);
 }
