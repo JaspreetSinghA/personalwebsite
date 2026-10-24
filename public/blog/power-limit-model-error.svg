@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 660 300" width="660" height="300" font-family="Inter, system-ui, sans-serif" font-size="13" role="img" aria-labelledby="t d">
+<title id="t">Peak temperature error on data the model never saw, by model</title>
+<desc id="d">Unseen runs: Old model 3.76 °C, One-node 2.95 °C, Two-node 1.05 °C; Unseen days: Old model 4.19 °C, One-node 4.37 °C, Two-node 1.47 °C. Lower is better.</desc>
+<rect x="130" y="12" width="10" height="10" rx="2" fill="#d4d4d8"/><text x="146" y="22" fill="#71717a">Old model</text>
+<rect x="237.5" y="12" width="10" height="10" rx="2" fill="#a1a1aa"/><text x="253.5" y="22" fill="#71717a">One-node</text>
+<rect x="337.5" y="12" width="10" height="10" rx="2" fill="#10b981"/><text x="353.5" y="22" fill="#71717a">Two-node</text>
+<line x1="130.0" x2="130.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="130.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">0 °C</text>
+<line x1="226.0" x2="226.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="226.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">1 °C</text>
+<line x1="322.0" x2="322.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="322.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">2 °C</text>
+<line x1="418.0" x2="418.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="418.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">3 °C</text>
+<line x1="514.0" x2="514.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="514.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">4 °C</text>
+<line x1="610.0" x2="610.0" y1="40" y2="252" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="610.0" y="272" fill="#71717a" text-anchor="middle" font-size="12">5 °C</text>
+<text x="116" y="94" fill="#71717a" text-anchor="end">Unseen runs</text>
+<rect x="130" y="52" width="361.0" height="22" rx="3" fill="#d4d4d8"/>
+<text x="499.0" y="68" fill="#71717a" font-size="11">3.76</text>
+<rect x="130" y="80" width="283.2" height="22" rx="3" fill="#a1a1aa"/>
+<text x="421.2" y="96" fill="#71717a" font-size="11">2.95</text>
+<rect x="130" y="108" width="100.8" height="22" rx="3" fill="#10b981"/>
+<text x="238.8" y="124" fill="#71717a" font-size="11">1.05</text>
+<text x="116" y="198" fill="#71717a" text-anchor="end">Unseen days</text>
+<rect x="130" y="156" width="402.2" height="22" rx="3" fill="#d4d4d8"/>
+<text x="540.2" y="172" fill="#71717a" font-size="11">4.19</text>
+<rect x="130" y="184" width="419.5" height="22" rx="3" fill="#a1a1aa"/>
+<text x="557.5" y="200" fill="#71717a" font-size="11">4.37</text>
+<rect x="130" y="212" width="141.1" height="22" rx="3" fill="#10b981"/>
+<text x="279.1" y="228" fill="#71717a" font-size="11">1.47</text>
+<text x="370" y="294" fill="#71717a" text-anchor="middle" font-size="12">Peak error (lower is better)</text>
+</svg>
