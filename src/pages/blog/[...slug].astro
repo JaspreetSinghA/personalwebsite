@@ -15,7 +15,7 @@ const more = isActivity(post) ? [] : (await getWriting()).filter((p) => p.id !==
 const back = isActivity(post) ? { href: "/blog/activity/", label: "GitHub activity" } : { href: "/blog/", label: "Blog" };
 ---
 
-<Base title={post.data.title} description={post.data.description} type="article" image={`/og/blog/${post.id}.png`}>
+<Base title={post.data.title} description={post.data.description} type="article" image={`/og/blog/${post.id}.png`} published={post.data.date}>
   <article>
     <a href={back.href} class="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">← {back.label}</a>
     <header class="mt-8 mb-12">

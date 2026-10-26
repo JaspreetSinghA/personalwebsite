@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.jaspreetahluwalia.com/sitemap-index.xml
