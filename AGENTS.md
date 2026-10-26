@@ -4,7 +4,12 @@ This repo is Jaspreet Ahluwalia's personal site (Astro + Tailwind, deployed to G
 
 ## Where posts go
 
-One Markdown file per post: `src/content/blog/<slug>.md`. The slug is short, lowercase, and hyphenated (e.g. `can-driver-for-vcu.md`). It becomes the URL: `/blog/<slug>/`.
+This repo is public, so anything committed (including drafts, and every past version in git history) can be read by anyone. Drafts therefore never get committed:
+
+- **Drafts** go in `src/content/blog/drafts/<slug>.md`. That folder is gitignored, so nothing in it is pushed. Preview it with `npm run dev` at `/blog/drafts/<slug>/`.
+- **Publishing:** once Jaspreet approves a draft (and, for team or company work, has permission), move it to `src/content/blog/<slug>.md`, set `draft: false`, and open a PR.
+
+The slug is short, lowercase, and hyphenated (e.g. `can-driver-for-vcu.md`). A published post's URL is `/blog/<slug>/`.
 
 Frontmatter (schema in `src/content.config.ts`, the build fails if it doesn't match):
 
@@ -18,7 +23,7 @@ draft: true
 ---
 ```
 
-- Always start with `draft: true`. Jaspreet flips it to `false` after reviewing. Drafts show up in `npm run dev` but not on the live site.
+- Always start with `draft: true` in the drafts folder. It's a second safeguard: even if a draft is committed by mistake, it won't appear on the live site (but it will still be readable on GitHub).
 - Never use the `activity` tag. It's reserved for the automated weekly GitHub summaries (`scripts/sync-activity.mjs`), and posts with that tag are hidden from the main blog.
 - Images or charts go in `public/blog/` and are referenced as `/blog/<file>`. Give every image real alt text. Prefer SVG or compressed PNG/JPG, and strip EXIF from photos.
 
@@ -59,7 +64,7 @@ Aim for 400–1000 words. Use code snippets only where they explain something.
 ## Privacy and permissions
 
 - Never include secrets, API keys, tokens, internal URLs, phone numbers, or home address.
-- Spartan Racing (SJSU Formula SAE) and Rayfield Systems work is team/company work. Don't publish their code, schematics, data, or photos unless Jaspreet confirms he has permission. Keep the post as a draft and flag it.
+- Spartan Racing (SJSU Formula SAE) and Rayfield Systems work is team/company work. Don't publish their code, schematics, data, or photos unless Jaspreet confirms he has permission. Keep the post in the local drafts folder and flag it. This also covers figures that would help a rival team (thermal margins, control strategy, limits, unpublished test results), and it applies to commit messages and PR descriptions too.
 - Don't paste large chunks of proprietary code. Link to public repos instead.
 
 ## Before you finish
@@ -70,6 +75,8 @@ npm run build     # runs astro check and fails on frontmatter errors
 node scripts/check-site-urls.mjs dist
 ```
 
-Then commit on a new branch and open a pull request. Don't push straight to `main`, because that publishes immediately. In the PR description, list anything you weren't sure about (numbers, permissions, wording).
+For a draft, stop here: leave it in `src/content/blog/drafts/` and tell Jaspreet where it is. Don't commit it.
+
+For an approved post (moved out of drafts, `draft: false`), commit on a new branch and open a pull request. Don't push straight to `main`, because that publishes immediately. In the PR description, list anything you weren't sure about (numbers, permissions, wording).
 
 Never delete `public/googlea7477a0b1b1b83e1.html` (Google Search Console verification) or `public/CNAME`.

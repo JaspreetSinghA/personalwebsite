@@ -3,3 +3,6 @@ dist/
 .astro/
 .env
 .DS_Store
+
+# Unpublished blog drafts stay local; this repo is public.
+src/content/blog/drafts/
