@@ -12,7 +12,7 @@ I work on electronics and software for [Spartan Racing](https://www.sjsuformulas
 
 ## The problem
 
-The VCU derates motor power as the battery pack heats up, and it uses the BMS's peak cell temperature to decide how much. On hard runs the derating model's peak-temperature error was much larger than we assumed, and our hardest runs left only **2–4 minutes before a BMS fault**.
+The VCU derates motor power as the battery pack heats up. On hard runs the derating model's peak-temperature error was much larger than we assumed.
 
 <!-- TODO: plot of peak cell temp vs. time for a hard run, with the derating threshold marked. -->
 
@@ -20,14 +20,15 @@ The VCU derates motor power as the battery pack heats up, and it uses the BMS's 
 
 - **Find the outliers.** A few sensors consistently read hotter than the rest of the pack. That pattern pointed to something about where those sensors were, not the cells themselves.
 - **Check the physical layout.** Those thermistors sat next to fuselinks. Under high current the fuselinks heat up, so those sensors were measuring fuselink heating, not cell temperature.
-- **Re-fit the model.** Once we separated fuselink heat from cell heat, the corrected peak-temperature error went from **~4 °C to 8–10 °C**, which matched what we were seeing on track.
+- **Measure what the model was missing.** Once we separated fuselink heat from cell heat, the gap was obvious: the model predicted about half the real warming. When the pack rose 8–10 °C, it said about 4 °C.
+- **Then fix it.** A retrained two-node thermal model ([more on that here](/blog/power-limit-simulator/)) cut the mean peak-temperature miss from **3.76 °C to 1.05 °C**.
 
 <!-- TODO: photo or diagram of the segment showing thermistor and fuselink placement (if shareable). -->
 
 ## What changed
 
 - **Post-run telemetry checks.** I wrote checks that run in **under 1 second per log** and flag BMS logging failures, dead sensors, and throttle cuts. They're now part of the team's data pipeline, so problems like this come up after every run instead of weeks later.
-- **A derating test plan.** Using the 2–4 minute margin, I wrote the derating test plan for the next event.
+- **A derating test plan.** I used what we learned to write the derating test plan for the next event.
 
 ## What I learned
 
