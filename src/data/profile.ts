@@ -36,7 +36,7 @@ export const experience: Experience[] = [
     points: [
       "Developing SPI and CAN bus drivers for the team's custom vehicle control unit (VCU).",
       "Found the pack's hottest sensors were reading fuselink heating, not cell temperature, and that the derating model predicted only about half the real warming (~4 °C when the pack rose 8–10 °C). Retrained it to cut mean peak-temperature error from 3.76 °C to 1.05 °C.",
-      "Built post-run telemetry checks that flag BMS logging failures and dead sensors; showed hard runs left only 2–4 min before a BMS fault.",
+      "Built post-run telemetry checks that flag BMS logging failures and dead sensors.",
     ],
   },
   {
