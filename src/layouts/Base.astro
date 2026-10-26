@@ -33,7 +33,7 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 
-// schema.org structured data: Person + WebSite on the homepage, BlogPosting on articles.
+// schema.org structured data: WebSite + ProfilePage (about Person) on the homepage, BlogPosting on articles.
 const home = new URL("/", Astro.site).href;
 const author = { "@type": "Person", "@id": `${home}#person`, name: profile.name, url: home };
 const person = {
@@ -46,7 +46,13 @@ const person = {
 const schema =
   noindex ? undefined
   : Astro.url.pathname === "/" ?
-    { "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${home}#website`, url: home, name: profile.name, author }, person] }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "WebSite", "@id": `${home}#website`, url: home, name: profile.name, author },
+        { "@type": "ProfilePage", url: home, name: title, isPartOf: { "@id": `${home}#website` }, mainEntity: person },
+      ],
+    }
   : type === "article" && published ?
     {
       "@context": "https://schema.org",
