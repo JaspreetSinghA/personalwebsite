@@ -20,7 +20,8 @@ The VCU derates motor power as the battery pack heats up, and it uses the BMS's 
 
 - **Find the outliers.** A few sensors consistently read hotter than the rest of the pack. That pattern pointed to something about where those sensors were, not the cells themselves.
 - **Check the physical layout.** Those thermistors sat next to fuselinks. Under high current the fuselinks heat up, so those sensors were measuring fuselink heating, not cell temperature.
-- **Re-fit the model.** Once we separated fuselink heat from cell heat, the corrected peak-temperature error went from **~4 °C to 8–10 °C**, which matched what we were seeing on track.
+- **Re-measure the error.** Once we separated fuselink heat from cell heat, the model's real peak-temperature error turned out to be **8–10 °C**, not the ~4 °C we'd been measuring. The bigger number matched what we were seeing on track.
+- **Then reduce it.** <!-- TODO: how much you brought the error down, and how. Real numbers only. -->
 
 <!-- TODO: photo or diagram of the segment showing thermistor and fuselink placement (if shareable). -->
 
