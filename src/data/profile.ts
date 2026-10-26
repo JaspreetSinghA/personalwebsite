@@ -87,14 +87,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "LiftLog",
-    description:
-      "Offline-first, private gym tracker PWA. Computes progressive-overload targets and PRs from your history — no account, no backend.",
-    tags: ["TypeScript", "PWA", "IndexedDB"],
-    href: "https://github.com/JaspreetSinghA/liftlog",
-    links: [{ label: "Live demo", href: "https://jaspreetsingha.github.io/liftlog/" }],
-  },
-  {
     name: "Emissions Anomaly Dashboard",
     description:
       "Full-stack app for Rayfield Systems: upload facility emissions CSVs, train ML models, flag anomalies, and export plain-English reports.",
