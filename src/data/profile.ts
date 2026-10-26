@@ -35,6 +35,7 @@ export const experience: Experience[] = [
     writeup: "spartan-racing-bms-derating",
     points: [
       "Developing SPI and CAN bus drivers for the team's custom vehicle control unit (VCU).",
+      "Built a two-node battery thermal model for power derating that cut peak-temperature prediction error 72% (3.76 °C → 1.05 °C) on unseen runs.",
     ],
   },
   {
