@@ -76,3 +76,5 @@ The [paper](https://github.com/JaspreetSinghA/biaslense/blob/main/docs/paper/bia
 Thanks to Ashudeep Singh for his thoughts, guidance and critiques throughout, and to the six raters who scored every answer.
 
 **Links:** [paper (working draft)](https://github.com/JaspreetSinghA/biaslense/blob/main/docs/paper/biaslense_paper.pdf) · [GitHub](https://github.com/JaspreetSinghA/biaslense) · [PyPI](https://pypi.org/project/biaslense/)
+
+Some of these numbers looked better a month ago. [Here's the bug that made them look that way →](/blog/raters-agreed-on-different-questions/)

@@ -24,6 +24,7 @@ draft: true
 ```
 
 - Always start with `draft: true` in the drafts folder. It's a second safeguard: even if a draft is committed by mistake, it won't appear on the live site (but it will still be readable on GitHub).
+- The first tag is always the project: `biaslens`, `spartan-racing`, or `misc` for anything else. Add new project tags only for projects that will get more than one post. This keeps grouping posts by project easy later.
 - Never use the `activity` tag. It's reserved for the automated weekly GitHub summaries (`scripts/sync-activity.mjs`), and posts with that tag are hidden from the main blog.
 - Images or charts go in `public/blog/` and are referenced as `/blog/<file>`. Give every image real alt text. Prefer SVG or compressed PNG/JPG, and strip EXIF from photos.
 
