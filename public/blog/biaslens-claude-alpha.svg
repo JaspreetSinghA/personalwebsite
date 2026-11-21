@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 290" width="660" height="290" font-family="Inter, system-ui, sans-serif" font-size="13" role="img" aria-labelledby="t d">
+<title id="t">Claude raters agreement, with the bug and fixed</title>
+<desc id="d">Krippendorff alpha for the two Claude-3 Haiku raters. Accuracy: 0.49 with the bug, -0.05 fixed; Fairness: 0.03 with the bug, 0.38 fixed; Neutrality: 0.07 with the bug, 0.25 fixed; Representation: -0.16 with the bug, 0.08 fixed. 0 means chance-level agreement; 0.667 is the minimum for tentative conclusions. No value reaches it either way.</desc>
+<circle cx="150" cy="18" r="6" fill="none" stroke="#eb6834" stroke-width="2.5"/><text x="162" y="22" fill="#71717a">With the bug (what I published)</text>
+<circle cx="400" cy="18" r="6" fill="#2a78d6"/><text x="412" y="22" fill="#71717a">Fixed</text>
+<line x1="172.0" x2="172.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="172.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">-0.25</text>
+<line x1="267.0" x2="267.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.6"/>
+<text x="267.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">0</text>
+<line x1="362.0" x2="362.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="362.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">0.25</text>
+<line x1="457.0" x2="457.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="457.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">0.5</text>
+<line x1="552.0" x2="552.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="552.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">0.75</text>
+<line x1="647.0" x2="647.0" y1="44" y2="232" stroke="#a1a1aa" stroke-opacity="0.3"/>
+<text x="647.0" y="250" fill="#71717a" text-anchor="middle" font-size="12">1</text>
+<line x1="520.5" x2="520.5" y1="44" y2="232" stroke="#71717a" stroke-dasharray="4 4"/>
+<text x="526.5" y="58" fill="#71717a" font-size="11">0.667: minimum to</text>
+<text x="526.5" y="72" fill="#71717a" font-size="11">draw conclusions</text>
+<text x="272.0" y="228" fill="#71717a" font-size="11">chance</text>
+<text x="136" y="96" fill="#71717a" text-anchor="end">Accuracy</text>
+<line x1="453.2" x2="248.0" y1="92" y2="92" stroke="#a1a1aa" stroke-opacity="0.6" stroke-width="2"/>
+<circle cx="453.2" cy="92" r="6" fill="none" stroke="#eb6834" stroke-width="2.5"/>
+<circle cx="248.0" cy="92" r="6" fill="#2a78d6"/>
+<text x="237.0" y="96" fill="#71717a" text-anchor="end" font-size="11">-0.05</text>
+<text x="464.2" y="96" fill="#71717a" font-size="11">0.49</text>
+<text x="136" y="134" fill="#71717a" text-anchor="end">Fairness</text>
+<line x1="278.4" x2="411.4" y1="130" y2="130" stroke="#a1a1aa" stroke-opacity="0.6" stroke-width="2"/>
+<circle cx="278.4" cy="130" r="6" fill="none" stroke="#eb6834" stroke-width="2.5"/>
+<circle cx="411.4" cy="130" r="6" fill="#2a78d6"/>
+<text x="267.4" y="134" fill="#71717a" text-anchor="end" font-size="11">0.03</text>
+<text x="422.4" y="134" fill="#71717a" font-size="11">0.38</text>
+<text x="136" y="172" fill="#71717a" text-anchor="end">Neutrality</text>
+<line x1="293.6" x2="362.0" y1="168" y2="168" stroke="#a1a1aa" stroke-opacity="0.6" stroke-width="2"/>
+<circle cx="293.6" cy="168" r="6" fill="none" stroke="#eb6834" stroke-width="2.5"/>
+<circle cx="362.0" cy="168" r="6" fill="#2a78d6"/>
+<text x="282.6" y="172" fill="#71717a" text-anchor="end" font-size="11">0.07</text>
+<text x="373.0" y="172" fill="#71717a" font-size="11">0.25</text>
+<text x="136" y="210" fill="#71717a" text-anchor="end">Representation</text>
+<line x1="206.2" x2="297.4" y1="206" y2="206" stroke="#a1a1aa" stroke-opacity="0.6" stroke-width="2"/>
+<circle cx="206.2" cy="206" r="6" fill="none" stroke="#eb6834" stroke-width="2.5"/>
+<circle cx="297.4" cy="206" r="6" fill="#2a78d6"/>
+<text x="195.2" y="210" fill="#71717a" text-anchor="end" font-size="11">-0.16</text>
+<text x="308.4" y="210" fill="#71717a" font-size="11">0.08</text>
+<text x="400" y="280" fill="#71717a" text-anchor="middle" font-size="11">Krippendorff's alpha for the two Claude raters (1 = perfect agreement)</text></svg>
