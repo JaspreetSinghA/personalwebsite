@@ -81,4 +81,6 @@ The core story survived. The parts that made it sound stronger mostly didn't.
 - **Every number should come from a script you can rerun.** The mitigation percentages had no script behind them, and they were off by about half.
 - **Running isn't the same as right.** The pipeline ran without errors for months. It was also wrong.
 
-I'd rather find this myself than have a reviewer find it. If you're reading the [paper](https://github.com/JaspreetSinghA/biaslense/blob/main/docs/paper/biaslense_paper.pdf), every number in it now comes from code in the repo. What the study actually found is in [the companion post](/blog/ai-got-a-sikh-rule-backwards/).
+I'd rather find this myself than have a reviewer find it. If you're reading the [paper](https://github.com/JaspreetSinghA/biaslense/blob/main/docs/paper/biaslense_paper.pdf), every number in it now comes from code in the repo.
+
+The findings that survived are in the other post: three AI models, 54 questions about Sikhs, and one rule flipped backwards. [Read it →](/blog/ai-got-a-sikh-rule-backwards/)
