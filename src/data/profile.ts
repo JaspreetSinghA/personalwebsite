@@ -11,7 +11,7 @@ export const profile = {
   goatcounter: "jaspreeta",
   seeking: "Seeking Summer 2027 internships in embedded systems, hardware, and electrical engineering.",
   summary:
-    "I build embedded systems for an electric race car and tools that measure bias in AI. Currently writing SPI and CAN drivers for Spartan Racing's vehicle control unit, and maintaining BiasLens, an open-source LLM bias-detection toolkit.",
+    "I build embedded systems for an electric race car and tools that measure bias in AI. Currently writing the SPI driver for Spartan Racing's vehicle control unit, with the Ethernet driver up next. I also built BiasLens, an open-source LLM bias-detection toolkit.",
 };
 
 export type Experience = {
@@ -34,8 +34,9 @@ export const experience: Experience[] = [
     period: "Sep 2026 — Present",
     writeup: "spartan-racing-bms-derating",
     points: [
-      "Developing SPI and CAN bus drivers for the team's custom vehicle control unit (VCU).",
+      "Co-developing an interrupt-driven SPI driver in C (STM32 HAL, RTOS) for the team's custom vehicle control unit (VCU).",
       "Built a two-node battery thermal model for power derating that cut peak-temperature prediction error 72% (3.76 °C → 1.05 °C) on unseen runs.",
+      "Traced misleading pack temperature readings to a sensor issue; presented it and the derating test plan at the team's Critical Design Review.",
       "Built automated post-run telemetry checks for the team's data pipeline.",
     ],
   },
@@ -43,7 +44,7 @@ export const experience: Experience[] = [
     org: "BiasLens",
     orgNote: "Backed by United Sikhs, a UN-partnered NGO",
     role: "Founder & Sole Developer",
-    period: "Jan 2024 — Present",
+    period: "Jan 2024 — Nov 2026",
     link: "https://github.com/JaspreetSinghA/biaslense",
     writeup: "biaslens-llm-as-judge",
     points: [
@@ -59,6 +60,7 @@ export const experience: Experience[] = [
     location: "Remote",
     points: [
       "Cut manual reporting time 35% and raised data accuracy 25% by automating compliance reporting with a Python tool.",
+      "Trained 8 teammates to run the new reporting process.",
     ],
   },
 ];
@@ -134,7 +136,7 @@ export const leadership = [
 
 export const skills: Record<string, string[]> = {
   Languages: ["Python", "C", "Java", "TypeScript"],
-  "Hardware & Embedded": ["SPI", "CAN bus", "Microcontrollers", "BMS telemetry", "MoTeC i2 Pro"],
+  "Hardware & Embedded": ["STM32 HAL (ARM Cortex-M)", "Roku LT OS (RTOS)", "SPI", "BMS telemetry", "MoTeC i2 Pro"],
   "ML & Data": ["LLM-as-judge", "Prompt engineering", "NLP", "scikit-learn", "pandas", "NumPy"],
   Tools: ["FastAPI", "Streamlit", "OpenAI & Anthropic APIs", "MCP", "pytest", "Git"],
 };
